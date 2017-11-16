@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http'
 @Injectable()
 export class ContatoService {
 
-  urlServicos = 'http://localhost:3000/contatos'
+  urlServicos = 'http://localhost:8080/contatos'
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class ContatoService {
 
   editar(contato: any){
     console.log(contato);
-    return this.http.put(this.urlServicos + '/' + contato._id, contato);
+    return this.http.put(this.urlServicos, contato);
   }
 
   remover(id: any) {

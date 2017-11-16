@@ -32,8 +32,8 @@
       <p-dialog header="Editar Contato" [(visible)]="display" modal="modal" [responsive]="true">
         <form #frm="ngForm" (ngSubmit)="editar(frm)">
             <div hidden>
-                <input pInputText name="_id" ngModel>
-                <input pInputText name="__v" ngModel>
+                <input pInputText name="id" ngModel>
+                <!-- <input pInputText name="__v" ngModel> -->
             </div>
             <div class="ui-g-6 ui-sm-12 ui-fluid">
               <label>Nome:</label>
