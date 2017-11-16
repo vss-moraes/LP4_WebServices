@@ -13,6 +13,7 @@ export class ContatoCadastroComponent implements OnInit {
 
   titulo = 'Contatos';
   contatos = [];
+  display: boolean = false;
 
   constructor(
     private service: ContatoService,
@@ -33,6 +34,18 @@ export class ContatoCadastroComponent implements OnInit {
   carregar(){
     this.service.listar().subscribe((dados) => {
       this.contatos = dados;
+    })
+  }
+
+  mostrarDialog(contato :any, formulario: FormControl){
+    this.display = true;
+    formulario.setValue(contato);
+  }
+
+  editar (formulario: FormControl) {
+    this.service.editar(formulario.value).subscribe(() => {
+      this.display = false;
+      this.carregar();
     })
   }
 

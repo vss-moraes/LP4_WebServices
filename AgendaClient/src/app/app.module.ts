@@ -16,7 +16,8 @@ import {
   ButtonModule,
   DataTableModule,
   ConfirmDialogModule,
-  ConfirmationService
+  ConfirmationService,
+  DialogModule
 } from 'primeng/primeng';
 import { ContatoCadastroComponent } from './contato-cadastro/contato-cadastro.component';
 
@@ -35,7 +36,8 @@ import { ContatoCadastroComponent } from './contato-cadastro/contato-cadastro.co
     ButtonModule,
     DataTableModule,
     HttpClientModule,
-    ConfirmDialogModule
+    ConfirmDialogModule,
+    DialogModule
   ],
   providers: [
     ContatoService,

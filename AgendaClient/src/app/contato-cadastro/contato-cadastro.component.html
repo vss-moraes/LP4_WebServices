@@ -28,6 +28,36 @@
   <div class="ui-g">
     <div class="ui-g-12">
       <p-confirmDialog acceptLabel="Sim" rejectLabel="Não"></p-confirmDialog>
+
+      <p-dialog header="Editar Contato" [(visible)]="display" modal="modal" [responsive]="true">
+        <form #frm="ngForm" (ngSubmit)="editar(frm)">
+            <div hidden>
+                <input pInputText name="_id" ngModel>
+                <input pInputText name="__v" ngModel>
+            </div>
+            <div class="ui-g-6 ui-sm-12 ui-fluid">
+              <label>Nome:</label>
+              <input pInputText name="nome" ngModel required>
+            </div>
+            <div class="ui-g-6 ui-sm-12 ui-fluid">
+              <label>Telefone:</label>
+              <p-inputMask mask="(99) 99999-9999" name="telefone" placeholder="(99) 99999-9999" ngModel required></p-inputMask>
+            </div>
+            <div class="ui-g-6 ui-sm-12 ui-fluid">
+              <label>Endereço:</label>
+              <input pInputText name="endereco" ngModel >
+            </div>
+            <div class="ui-g-6 ui-sm-12 ui-fluid">
+              <label>E-mail:</label>
+              <input type="email" pInputText name="email" ngModel  email>
+            </div>
+            <div class="ui-g-12">
+              <button pButton type="submit" icon="fa-check" label="Salvar" [disabled]="frm.invalid"></button>
+              <button type="button" pButton icon="fa-close" (click)="display=false" label="Cancelar"></button>              
+            </div>
+          </form>
+      </p-dialog>
+
       <p-dataTable #tabela [value]="contatos" [rows]="10" [paginator]="true" emptyMessage="Nenhum contato cadastrado">
         <p-column field="nome" header="Nome" [filter]="true" filterMatchMode="contains"></p-column>
         <p-column field="telefone" header="Telefone"></p-column>
@@ -37,6 +67,7 @@
           <ng-template let-contato="rowData" pTemplate="body">
             <div class="alinhamentoCelulas">
               <button type="button" pButton (click)="remover(contato)" icon="fa-trash"></button>
+              <button type="button" pButton (click)="mostrarDialog(contato, frm)" icon="fa-pencil"></button>
             </div>
           </ng-template>
         </p-column>

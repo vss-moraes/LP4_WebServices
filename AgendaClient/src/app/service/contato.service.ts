@@ -17,8 +17,12 @@ export class ContatoService {
     return this.http.get<any[]>(this.urlServicos);
   }
 
+  editar(contato: any){
+    console.log(contato);
+    return this.http.put(this.urlServicos + '/' + contato._id, contato);
+  }
+
   remover(id: any) {
     return this.http.delete(this.urlServicos + '/' + id);
   }
-
 }

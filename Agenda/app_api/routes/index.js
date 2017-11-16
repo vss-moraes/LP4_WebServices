@@ -6,4 +6,5 @@ var ctrlContatos = require('../controllers/contatos');
 router.get('/contatos', ctrlContatos.buscaTodos);
 router.post('/contatos', ctrlContatos.salva);
 router.delete('/contatos/:id', ctrlContatos.remove);
+router.put('/contatos/:id', ctrlContatos.editar);
 module.exports = router;

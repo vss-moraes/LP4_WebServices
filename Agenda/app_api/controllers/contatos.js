@@ -38,3 +38,15 @@ module.exports.remove = function (req, res) {
         }
         );
 };
+
+module.exports.editar = function (req, res) {
+    Contato.findByIdAndUpdate(req.body._id, req.body).then(
+        function (contato) {
+            res.status(204).end();
+        },
+        function (erro) {
+            console.error(erro);
+            res.status(500).json(erro);
+        }
+    );
+}
