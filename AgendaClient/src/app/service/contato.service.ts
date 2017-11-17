@@ -18,7 +18,6 @@ export class ContatoService {
   }
 
   editar(contato: any){
-    console.log(contato);
     return this.http.put(this.urlServicos, contato);
   }
 

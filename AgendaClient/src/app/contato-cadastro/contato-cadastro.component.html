@@ -68,11 +68,18 @@
             <div class="alinhamentoCelulas">
               <button type="button" pButton (click)="remover(contato)" icon="fa-trash"></button>
               <button type="button" pButton (click)="mostrarDialog(contato, frm)" icon="fa-pencil"></button>
+              <button
+                *ngIf="contato.favorito; else elseBlock"
+                type="button" pButton (click)="setaFavorito(contato)" icon="fa-star"></button>
+              <ng-template #elseBlock>
+                <button type="button" pButton (click)="setaFavorito(contato)" icon="fa-star-o"></button>                          
+              </ng-template>
             </div>
           </ng-template>
         </p-column>
       </p-dataTable>
       <button type="button" pButton icon="fa-file-o" iconPos="left" label="Exportar para CSV" (click)="tabela.exportCSV()"></button>
+      <button type="button" pButton icon="fa-star" iconPos="left" label="Exibir Favoritos" (click)="mostraFavoritos()"></button>      
     </div>
   </div>
 </div>

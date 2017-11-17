@@ -14,6 +14,7 @@ export class ContatoCadastroComponent implements OnInit {
   titulo = 'Contatos';
   contatos = [];
   display: boolean = false;
+  favoritos: boolean = false;
 
   constructor(
     private service: ContatoService,
@@ -33,13 +34,26 @@ export class ContatoCadastroComponent implements OnInit {
 
   carregar(){
     this.service.listar().subscribe((dados) => {
-      this.contatos = dados;
+      if (this.favoritos) {
+        this.contatos = dados.filter(function(elem) {
+          if (elem.favorito){
+            return elem
+          }
+        })
+      } else {
+        this.contatos = dados;
+      }
     })
   }
 
   mostrarDialog(contato :any, formulario: FormControl){
     this.display = true;
     formulario.setValue(contato);
+  }
+
+  mostraFavoritos(){
+    this.favoritos = !this.favoritos;
+    this.carregar();
   }
 
   editar (formulario: FormControl) {
@@ -61,5 +75,13 @@ export class ContatoCadastroComponent implements OnInit {
       },
       reject: () => { }
     });
+  }
+
+  setaFavorito(contato: any){
+    contato.favorito = contato.favorito ? false : true;
+    console.log(contato);
+    this.service.editar(contato).subscribe(() => {
+      this.carregar();
+    })
   }
 }
